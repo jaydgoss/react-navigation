@@ -62,6 +62,7 @@ type Props = ViewProps & {
     open: TransitionSpec;
     close: TransitionSpec;
   };
+  shouldHide?: boolean;
   styleInterpolator: StackCardStyleInterpolator;
   containerStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
@@ -446,6 +447,7 @@ export default class Card extends React.Component<Props> {
       children,
       containerStyle: customContainerStyle,
       contentStyle,
+      shouldHide,
       ...rest
     } = this.props;
 
@@ -516,6 +518,7 @@ export default class Card extends React.Component<Props> {
           }}
           // Make sure that this view isn't removed. If this view is removed, our style with animated value won't apply
           collapsable={false}
+          pointerEvents="none"
         />
         <View pointerEvents="box-none" {...rest}>
           {overlayEnabled ? (
@@ -536,6 +539,7 @@ export default class Card extends React.Component<Props> {
               <Animated.View
                 needsOffscreenAlphaCompositing={hasOpacityStyle(cardStyle)}
                 style={[styles.container, cardStyle]}
+                pointerEvents={shouldHide ? 'none' : 'box-none'}
               >
                 {shadowEnabled && shadowStyle && !isTransparent ? (
                   <Animated.View
@@ -551,7 +555,6 @@ export default class Card extends React.Component<Props> {
                       { backgroundColor },
                       shadowStyle,
                     ]}
-                    pointerEvents="none"
                   />
                 ) : null}
                 <CardSheet

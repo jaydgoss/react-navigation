@@ -29,6 +29,7 @@ type Props = {
   safeAreaInsetRight: number;
   safeAreaInsetBottom: number;
   safeAreaInsetLeft: number;
+  shouldHide?: boolean;
   getPreviousScene: (props: { route: Route<string> }) => Scene | undefined;
   getFocusedRoute: () => Route<string>;
   renderHeader: (props: HeaderContainerProps) => React.ReactNode;
@@ -88,6 +89,7 @@ function CardContainer({
   safeAreaInsetRight,
   safeAreaInsetTop,
   scene,
+  shouldHide,
 }: Props) {
   const parentHeaderHeight = React.useContext(HeaderHeightContext);
 
@@ -274,6 +276,7 @@ function CardContainer({
         },
         StyleSheet.absoluteFill,
       ]}
+      shouldHide={shouldHide}
     >
       <View style={styles.container}>
         <ModalPresentationContext.Provider value={modal}>

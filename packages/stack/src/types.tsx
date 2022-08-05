@@ -79,6 +79,7 @@ type SceneOptionsDefaults = TransitionPreset & {
   gestureEnabled: boolean;
   cardOverlayEnabled: boolean;
   headerMode: StackHeaderMode;
+  shouldHide?: boolean;
 };
 
 export type Scene = {

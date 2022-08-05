@@ -638,6 +638,8 @@ export default class CardStack extends React.Component<Props, State> {
               scenes[index + 1]?.descriptor.options.detachPreviousScreen !==
               false;
 
+            const opts = scenes[index].descriptor.options;
+
             return (
               <MaybeScreen
                 key={route.key}
@@ -680,6 +682,7 @@ export default class CardStack extends React.Component<Props, State> {
                   onTransitionEnd={onTransitionEnd}
                   isNextScreenTransparent={isNextScreenTransparent}
                   detachCurrentScreen={detachCurrentScreen}
+                  shouldHide={opts.shouldHide}
                 />
               </MaybeScreen>
             );
